@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import Api from '../Api';
 import {ConversionType} from '../types';
+import ConverterInputTypes from './ConverterInputTypes';
 
 interface Props {
 }
@@ -8,7 +9,7 @@ interface Props {
 interface State {
     value: string,
     result: string,
-    currentConversionType: string
+    currentConversionType: string,
     conversionTypes: ConversionType[]
 }
 
@@ -44,13 +45,26 @@ class NumberConverter extends React.Component<Props, State> {
     handleConversion = () => {
         const value: string = this.state.value;
         const type: string = this.state.currentConversionType;
-        Api.doConversion(value, type).then(data => {this.setState({result: data})});
+        if (!value || !type) {
+            alert("Value and conversion type should be filled!");
+            return;
+        }
+        Api.doConversion(value, type, (data) => this.setState({result: data}));
+    };
+
+    renderInput = (): React.ReactElement => {
+        if (ConverterInputTypes.hasOwnProperty(this.state.currentConversionType)) {
+            return React.createElement(ConverterInputTypes[this.state.currentConversionType], {
+                value: this.state.value,
+                handleValueChange: this.handleValueChange
+            });
+        }
+        return <input type='text' value={this.state.value} onChange={this.handleValueChange} />;
     };
     
     render(): React.ReactElement {
         return <div>
-            <span>{this.state.result}</span>
-            <input type='text' value={this.state.value} onChange={this.handleValueChange} />
+            {this.renderInput()}
             <select value={this.state.currentConversionType} onChange={this.handleCurrentConversionChange}>
                 {
                     this.state.conversionTypes.map((conversion) =>
@@ -60,6 +74,7 @@ class NumberConverter extends React.Component<Props, State> {
                 }
             </select>
             <button onClick={this.handleConversion}>Convert</button>
+            <div>{this.state.result}</div>
         </div>;
     }
 }

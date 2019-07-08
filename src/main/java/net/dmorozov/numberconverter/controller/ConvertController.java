@@ -2,6 +2,7 @@ package net.dmorozov.numberconverter.controller;
 
 import net.dmorozov.numberconverter.domain.ConvertRequest;
 import net.dmorozov.numberconverter.domain.ConvertResult;
+import net.dmorozov.numberconverter.domain.ConverterTypeDto;
 import net.dmorozov.numberconverter.domain.IllegalParametersException;
 import net.dmorozov.numberconverter.service.ConvertService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,14 @@ public class ConvertController {
     }
 
     @GetMapping(path = "/converters")
-    public List<String> getAvailableConverterTypes() {
+    public List<ConverterTypeDto> getAvailableConverterTypes() {
         return convertService.getAvailableConverterTypes();
     }
 
     @ExceptionHandler(IllegalParametersException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     ResponseEntity<String> handleIllegalParametersException(IllegalParametersException e) {
-        return new ResponseEntity<>("Request is not valid due to " + e.getMessage(),
-                HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Request is not valid due to " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @Autowired

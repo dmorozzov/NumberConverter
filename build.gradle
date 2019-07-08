@@ -28,16 +28,27 @@ task buildFront(type: NpmTask, dependsOn: 'npmInstall') {
 }
 
 task copyFront(type: Copy) {
-	from('frontend/build') {
-		include '*'
-	}
-	into 'src/main/resources/template'
+	from('frontend/build')
+	into 'src/main/resources/public'
+}
+
+task cleanFront(type: Delete) {
+    delete fileTree('src/main/resources/public')
+    delete fileTree('frontend/build')
 }
 
 task assembleFront() {
+    dependsOn 'cleanFront'
 	dependsOn 'buildFront'
 	dependsOn 'copyFront'
+    tasks.findByName('buildFront').mustRunAfter 'cleanFront'
 	tasks.findByName('copyFront').mustRunAfter 'buildFront'
+}
+
+task run() {
+	dependsOn 'assembleFront'
+	dependsOn 'bootRun'
+	tasks.findByName('bootRun').mustRunAfter 'assembleFront'
 }
 
 test {

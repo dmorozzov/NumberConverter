@@ -4,6 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+src/main/resources/public/**
 
 ### STS ###
 .apt_generated
@@ -35,9 +36,7 @@ out/
 
 # dependencies
 frontend/node_modules
-frontend/public
 frontend/README.md
-frontend/package-lock.json
 /.pnp
 .pnp.js
 

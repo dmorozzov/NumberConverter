@@ -4,6 +4,7 @@ import net.dmorozov.numberconverter.converters.ConverterType;
 import net.dmorozov.numberconverter.converters.NumberConverter;
 import net.dmorozov.numberconverter.domain.ConvertRequest;
 import net.dmorozov.numberconverter.domain.ConvertResult;
+import net.dmorozov.numberconverter.domain.ConverterTypeDto;
 import net.dmorozov.numberconverter.domain.IllegalParametersException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +24,10 @@ public class ConvertService {
 
     private Map<ConverterType, NumberConverter> converterMap;
 
-    public List<String> getAvailableConverterTypes() {
-        return converterMap.keySet().stream().map(ConverterType::getValue).collect(Collectors.toList());
+    public List<ConverterTypeDto> getAvailableConverterTypes() {
+        return converterMap.keySet().stream()
+                .map(converterType -> new ConverterTypeDto(converterType.getCaption(), converterType.getValue()))
+                .collect(Collectors.toList());
     }
 
     public ConvertResult convert(ConvertRequest convertRequest) {
