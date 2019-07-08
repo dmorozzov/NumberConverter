@@ -18,7 +18,10 @@ export default class Api {
             .then((data) => {
                 handleFetching(data as ConversionType[]);
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                alert(error);
+            });
     }
 
     static doConversion(value: string, converterType: string, handleFetching: (result: string) => void): void {
@@ -31,6 +34,9 @@ export default class Api {
             .then((data) => {
                 handleFetching(data.value);
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                alert(error);
+            });
     }
 }

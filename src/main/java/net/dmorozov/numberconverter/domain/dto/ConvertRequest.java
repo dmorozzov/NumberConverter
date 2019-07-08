@@ -1,4 +1,4 @@
-package net.dmorozov.numberconverter.domain;
+package net.dmorozov.numberconverter.domain.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

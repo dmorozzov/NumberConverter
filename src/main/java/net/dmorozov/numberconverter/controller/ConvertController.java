@@ -1,9 +1,9 @@
 package net.dmorozov.numberconverter.controller;
 
-import net.dmorozov.numberconverter.domain.ConvertRequest;
-import net.dmorozov.numberconverter.domain.ConvertResult;
-import net.dmorozov.numberconverter.domain.ConverterTypeDto;
 import net.dmorozov.numberconverter.domain.IllegalParametersException;
+import net.dmorozov.numberconverter.domain.dto.ConvertRequest;
+import net.dmorozov.numberconverter.domain.dto.ConvertResult;
+import net.dmorozov.numberconverter.domain.dto.ConverterTypeDto;
 import net.dmorozov.numberconverter.service.ConvertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

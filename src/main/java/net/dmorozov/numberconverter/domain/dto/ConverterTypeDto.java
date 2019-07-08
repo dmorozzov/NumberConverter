@@ -1,4 +1,4 @@
-package net.dmorozov.numberconverter.domain;
+package net.dmorozov.numberconverter.domain.dto;
 
 public class ConverterTypeDto {
     private String caption;
