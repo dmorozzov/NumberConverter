@@ -1,0 +1,12 @@
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 5px;
+    padding: 10px;
+}
+
+button[disabled] {
+    background:#ccc;
+    border-color: #ccc;
+    text-shadow:none;
+}

@@ -3,9 +3,7 @@ import NumberConverter from './components/NumberConverter';
 
 const App: React.FC = () => {
     return (
-        <div className='App'>
-            <NumberConverter/>
-        </div>
+        <NumberConverter/>
     );
 };
 

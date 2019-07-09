@@ -51,6 +51,8 @@ task run() {
 	tasks.findByName('bootRun').mustRunAfter 'assembleFront'
 }
 
+build.dependsOn 'assembleFront'
+
 test {
 	useJUnit()
 	maxHeapSize = '128M'
